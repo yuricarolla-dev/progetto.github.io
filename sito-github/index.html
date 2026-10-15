@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rigori</title>
+  <link rel="stylesheet" href="css/rigori.css">
+</head>
+<body>
+  <button id="audio" class="audio" title="Suoni on/off">🔊</button>
+  <h1>⚽ Rigori</h1>
+
+  <section id="schermata-menu">
+    <div class="opzioni">
+      <label>Meteo <select id="scelta-meteo"></select></label>
+      <label>Stadio <select id="scelta-stadio"></select></label>
+    </div>
+    <p>Scegli la modalità</p>
+    <div id="modalita" class="griglia"></div>
+  </section>
+
+  <section id="schermata-setup" hidden>
+    <p>🏆 Torneo a eliminazione diretta</p>
+    <div class="opzioni">
+      <label>Squadre
+        <select id="torneo-squadre">
+          <option value="4">4 (semifinali e finale)</option>
+          <option value="8" selected>8 (quarti, semifinali e finale)</option>
+        </select>
+      </label>
+      <label>Giocatori
+        <select id="torneo-umani"></select>
+      </label>
+    </div>
+    <p class="nota">Ogni giocatore sceglie rigorista e portiere. Le squadre che mancano le guida il computer 🤖.</p>
+    <button class="principale" id="torneo-avanti">Scegli le squadre</button>
+    <button class="secondario" onclick="mostraSchermata('schermata-menu')">← Menu</button>
+  </section>
+
+  <section id="schermata-torneo" hidden>
+    <h2 id="torneo-titolo">🏆 Tabellone</h2>
+    <div id="tabellone-scorri"><div id="tabellone"></div></div>
+    <p id="torneo-messaggio"></p>
+    <button class="principale" id="torneo-gioca">Gioca la prossima partita</button>
+    <button class="secondario" onclick="mostraSchermata('schermata-menu')">← Menu</button>
+  </section>
+
+  <section id="schermata-roster" hidden>
+    <p id="titolo-roster"></p>
+    <div id="roster" class="griglia"></div>
+    <p class="nota" id="nota-roster"></p>
+    <button class="secondario" onclick="mostraSchermata('schermata-menu')">← Menu</button>
+  </section>
+
+  <section id="schermata-gioco" hidden>
+    <div id="info"></div>
+
+    <div id="campo">
+      <div id="pubblico"></div>
+      <div id="linea"></div>
+      <div id="area"></div>
+      <div id="area-piccola"></div>
+      <div id="dischetto"></div>
+      <div id="porta">
+        <div id="mira"><div id="fantasma" hidden>🧤</div><div id="mirino" hidden></div></div>
+      </div>
+      <div id="portiere" class="attesa"></div>
+      <div id="palla"><span>⚽</span></div>
+      <div id="attaccante"></div>
+      <div id="compagno" hidden></div>
+      <div id="scritta"></div>
+      <div id="meteo-strato"></div>
+      <div id="vento" hidden></div>
+      <div id="sorteggio" hidden>
+        <h2>🪙 Testa o croce</h2>
+        <p id="sorteggio-testo"></p>
+        <div id="moneta">🪙</div>
+        <div id="sorteggio-scelte">
+          <button class="principale" data-faccia="testa">Testa</button>
+          <button class="principale" data-faccia="croce">Croce</button>
+        </div>
+        <button class="principale" id="sorteggio-via" hidden>Inizia!</button>
+      </div>
+      <div id="velo" hidden>
+        <h2 id="velo-titolo"></h2>
+        <p id="velo-testo"></p>
+        <button class="principale" id="velo-pronto">Pronto!</button>
+      </div>
+    </div>
+
+    <p id="messaggio"></p>
+    <div id="azioni">
+      <button class="principale" id="btn-cucchiaio" hidden>🥄 Tira il cucchiaio</button>
+      <button class="principale" id="btn-rovesciata" hidden>🤸 Rovesciata</button>
+      <button class="principale" id="btn-super" hidden>⚡ Tiro potente e preciso</button>
+      <button class="principale" id="btn-paradinha" hidden>👀 Paradinha</button>
+      <button class="principale" id="btn-precisione" hidden>🎯 Tiro di precisione</button>
+      <button class="principale" id="btn-sicuro" hidden>🐐 Gol sicuro</button>
+      <button class="principale" id="btn-passato" hidden>🤝 Rigore passato</button>
+      <button class="principale" id="btn-peperoncino" hidden>🌶️ Peperoncino</button>
+      <button class="principale" id="btn-centro" hidden>🧍 Resta al centro</button>
+    </div>
+    <div id="finale" hidden>
+      <button class="principale" id="btn-ancora" onclick="iniziaPartita()">Gioca ancora</button>
+      <button class="principale" id="btn-tabellone" hidden>🏆 Torna al tabellone</button>
+      <button class="principale" onclick="mostraSchermata('schermata-menu')">Menu</button>
+    </div>
+    <p class="nota">Clicca un punto qualsiasi della porta (sul telefono: tocca per mirare, tocca di nuovo per tirare). Vicino a pali e traversa è più difficile parare, ma rischi di tirare fuori.</p>
+  </section>
+
+  <script src="js/motore.js"></script>
+  <script src="js/effetti.js"></script>
+  <script src="js/gioco.js"></script>
+</body>
+</html>
